@@ -8,21 +8,6 @@ namespace BackroomsProject
     {
         Texture2D playerTexture;
         Rectangle playerRectangle;
-
-        protected override void LoadContent()
-        {
-            // Create a 50x50 yellow square texture
-            playerTexture = new Texture2D(GraphicsDevice, 50, 50);
-            Color[] data = new Color[50 * 50];
-
-            // Fill the texture with yellow color
-            for (int i = 0; i < data.Length; ++i) data[i] = Color.Yellow;
-
-            playerTexture.SetData(data);
-
-            // Set the initial position of the player
-            playerRectangle = new Rectangle(100, 100, 50, 50); // x, y, width, height
-        }
         
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -58,6 +43,21 @@ namespace BackroomsProject
             }
 
             base.Update(gameTime);
+        }
+        
+        protected override void LoadContent()
+        {
+            // Create a 50x50 yellow square texture
+            playerTexture = new Texture2D(GraphicsDevice, 50, 50);
+            Color[] data = new Color[50 * 50];
+
+            // Fill the texture with yellow color
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.Yellow;
+
+            playerTexture.SetData(data);
+
+            // Set the initial position of the player
+            playerRectangle = new Rectangle(100, 100, 50, 50); // x, y, width, height
         }
 
         protected override void Draw(GameTime gameTime)
