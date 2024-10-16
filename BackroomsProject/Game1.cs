@@ -47,7 +47,7 @@ namespace BackroomsProject
         
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             
             // Create a 50x50 yellow square texture
             playerTexture = new Texture2D(GraphicsDevice, 50, 50);
