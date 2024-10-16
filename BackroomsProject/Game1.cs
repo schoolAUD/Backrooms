@@ -6,6 +6,24 @@ namespace BackroomsProject
 {
     public class Game1 : Game
     {
+        Texture2D playerTexture;
+        Rectangle playerRectangle;
+
+        protected override void LoadContent()
+        {
+            // Create a 50x50 yellow square texture
+            playerTexture = new Texture2D(GraphicsDevice, 50, 50);
+            Color[] data = new Color[50 * 50];
+
+            // Fill the texture with yellow color
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.Yellow;
+
+            playerTexture.SetData(data);
+
+            // Set the initial position of the player
+            playerRectangle = new Rectangle(100, 100, 50, 50); // x, y, width, height
+        }
+        
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -32,10 +50,19 @@ namespace BackroomsProject
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState state = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W)) { 
+                playerRectangle.Y -= 2;
+            } else if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S)) {
+                playerRectangle.Y += 2;
+            } else if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A)) {
+                playerRectangle.X -= 2;
+            } else if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D)) {
+                playerRectangle.X += 2;
+            }
 
             base.Update(gameTime);
         }
@@ -44,9 +71,14 @@ namespace BackroomsProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            // Draw the player (yellow square)
+            spriteBatch.Draw(playerTexture, playerRectangle, Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
-        }
+        }    
     }
 }
