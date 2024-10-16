@@ -16,6 +16,8 @@ namespace BackroomsProject
         bool right = false;
         bool down = false;
         int speed = 2;
+        int seed = 58349;
+        int worldX, worldY = 0;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch spriteBatch;
@@ -30,7 +32,7 @@ namespace BackroomsProject
         protected override void Initialize()
         {
             client = new Client();
-            world  = new World(spriteBatch);
+            world = new World(spriteBatch, seed, worldX, worldY);
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -137,6 +139,8 @@ namespace BackroomsProject
             GraphicsDevice.Clear(Color.PaleGoldenrod);
 
             spriteBatch.Begin();
+
+            world.Draw();
 
             // Draw the player (yellow square)
             spriteBatch.Draw(playerTexture, playerRectangle, Color.White);
