@@ -8,6 +8,7 @@ namespace BackroomsProject
     {
         Texture2D playerTexture;
         Rectangle playerRectangle;
+        Int KeysPressed = 0;
         
         private GraphicsDeviceManager _graphics;
         private SpriteBatch spriteBatch;
@@ -34,11 +35,14 @@ namespace BackroomsProject
 
             if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W)) { 
                 playerRectangle.Y -= 2;
-            } else if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S)) {
+            }
+            if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S)) {
                 playerRectangle.Y += 2;
-            } else if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A)) {
+            }
+            if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A)) {
                 playerRectangle.X -= 2;
-            } else if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D)) {
+            }
+            if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D)) {
                 playerRectangle.X += 2;
             }
 
